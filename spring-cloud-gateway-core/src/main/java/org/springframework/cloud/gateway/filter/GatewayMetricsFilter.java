@@ -123,18 +123,18 @@ public class GatewayMetricsFilter implements GlobalFilter, Ordered {
 	 * @return string representation of the URI to be used in the metrics tag
 	 */
 	private String evaluateMetricsRequestUri(String routeUri, String gatewayRequestUrl) {
-		String uriSchemaHostPort;
+		String uriSchemeHostPort;
 
 		try {
 			URI requestUri = new URI(gatewayRequestUrl);
-			uriSchemaHostPort = requestUri.toString().startsWith(routeUri) ? routeUri
+			uriSchemeHostPort = requestUri.toString().startsWith(routeUri) ? routeUri
 					: new URI(requestUri.getScheme(), null, requestUri.getHost(),
 							requestUri.getPort(), null, null, null).toString();
 		}
 		catch (URISyntaxException e) {
-			uriSchemaHostPort = routeUri;
+			uriSchemeHostPort = routeUri;
 		}
 
-		return uriSchemaHostPort;
+		return uriSchemeHostPort;
 	}
 }
